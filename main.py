@@ -35,6 +35,12 @@ total_fraud_cases = len(fraud_positive_cases)
 # Calculate the percentage of fraud in each cluster
 fraud_percentage_in_clusters = (fraud_positive_count_in_clusters / total_fraud_cases) * 100
 
+# Calculate the total number of instances in each cluster
+cluster_counts = pd.Series(cluster_labels).value_counts()
+
+# Calculate the percentage of fraud in each cluster
+fraud_percentage_in_clusters2 = (fraud_positive_count_in_clusters / cluster_counts) * 100
+
 print("K-Means Clustering Results:")
 print("Cluster Centers:")
 print(kmeans.cluster_centers_)
@@ -47,6 +53,10 @@ print("\n")
 # Print the percentage of fraud in each cluster
 print("Percentage of fraud in each cluster:")
 print(fraud_percentage_in_clusters)
+
+# Print the percentage of fraud in each cluster
+print("Percentage of fraud in each cluster:")
+print(fraud_percentage_in_clusters2)
 
 x = data.drop('Class', axis=1)
 y = data['Class']
